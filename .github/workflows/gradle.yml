@@ -13,15 +13,14 @@ jobs:
         fetch-depth: 0
     - name: Install Bison and Flex
       run: |
-        dir
         mkdir win_flex_bison
         cd win_flex_bison
         curl -LJO https://github.com/q4a/ghidra/releases/download/dev-tools/win_flex_bison-2.5.18.zip
         tar -xf win_flex_bison-2.5.18.zip
-        dir
         move win_flex.exe flex.exe
         move win_bison.exe bison.exe
-        set PATH=%PATH%;d:\a\ghidra\ghidra\win_flex_bison\
+        dir
+        echo "::add-path::d:\a\ghidra\ghidra\win_flex_bison"
     - name: Fetch dependencies
       run: gradlew --init-script gradle/support/fetchDependencies.gradle init
     - name: Cache Gradle build

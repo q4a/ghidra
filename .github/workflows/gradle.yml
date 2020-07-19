@@ -11,16 +11,16 @@ jobs:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
-    - name: Download Bison and Flex
-      run: curl -LJO https://github.com/q4a/ghidra/releases/download/dev-tools/win_flex_bison-2.5.18.zip
-    - uses: montudor/action-zip@v0.1.0
-      with:
-        args: unzip -qq win_flex_bison-2.5.18.zip -d ./win_flex_bison
     - name: Install Bison and Flex
       run: |
-        dir win_flex_bison
-        move win_flex_bison/win_flex.exe win_flex_bison/flex.exe
-        move win_flex_bison/win_bison.exe win_flex_bison/bison.exe
+        dir
+        mkdir win_flex_bison
+        cd win_flex_bison
+        curl -LJO https://github.com/q4a/ghidra/releases/download/dev-tools/win_flex_bison-2.5.18.zip
+        tar -xf win_flex_bison-2.5.18.zip
+        dir
+        move win_flex.exe flex.exe
+        move win_bison.exe bison.exe
         set PATH=%PATH%;d:\a\ghidra\ghidra\win_flex_bison\
     - name: Fetch dependencies
       run: gradlew --init-script gradle/support/fetchDependencies.gradle init

@@ -21,6 +21,7 @@ jobs:
         move win_bison.exe bison.exe
         dir
         echo "::add-path::d:\a\ghidra\ghidra\win_flex_bison"
+        cd ..
     - name: Fetch dependencies
       run: gradlew --init-script gradle/support/fetchDependencies.gradle init
     - name: Cache Gradle build
